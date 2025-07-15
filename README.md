@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ✅ Todo App – Next.js 14, MongoDB & Google Auth
 
-## Getting Started
+This is a modern full-stack Todo application built with the Next.js App Router. It allows users to log in using Google, manage their tasks (create, toggle, and sort them), and share task views via URL parameters.
 
-First, run the development server:
+---
+
+## 🛠 Tech Stack
+
+- **Next.js 14+** (App Router): For full-stack capabilities with Server Components, routing, and SSR.
+- **MongoDB** + **Mongoose**: For document-based storage and data modeling.
+- **NextAuth.js**: For secure, built-in authentication with Google OAuth.
+- **TypeScript**: For type safety and better developer experience.
+- **Inline Styles**: used for more facility in the developpement
+
+> This stack showcases modern, production-ready technologies commonly used in React-based applications.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/todo-app-nextjs.git
+cd todo-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. Install dependencies
+   
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Environment variables
 
-## Learn More
+Create a .env.local file at the root of the project:
+```bash
 
-To learn more about Next.js, take a look at the following resources:
+DATABASE_URL="mongodb+srv://admin:admin@cluster0.vjfxpdd.mongodb.net/todo?retryWrites=true&w=majority"
+GOOGLE_CLIENT_ID=922260146867-3ehg8f6jhak8557j08jgio890vs1nnj7.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+NEXTAUTH_SECRET=55f10c05e5db3d769580bcbf65c7c81b
+NEXTAUTH_URL=http://localhost:3000
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+### 4. Run the app
+```bash
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The app will be available at: http://localhost:3000
 
-## Deploy on Vercel
+🔐 Authentication
+Authentication is handled with Google using NextAuth.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Users are redirected to /login if unauthenticated.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+After login, they are redirected to /todo, where their tasks are fetched.
+
+⚙️ Where SSR, Caching & Auth Are Applied
+✅ SSR (Server-Side Rendering)
+The TodoPage (/todo) uses getServerSession() in a Server Component to validate the session.
+
+The tasks are fetched client-side for sorting and interactivity.
+
+✅ Authentication
+Pages like /todo are protected and only accessible after login.
+
+Auth session is handled securely server-side using next-auth.
+
+⚠️ Caching
+No caching strategy was applied, but the architecture supports future implementation (SWR or server cache).
+
+✨ Features
+✅ Google Login
+
+✅ Add Task (Title + Description)
+
+✅ Toggle Completion
+
+✅ Sorting by Date / Completion
+
+✅ Shareable URLs with query string (e.g. ?sort=completed)
+
+✅ Server-side auth enforcement
+
+✅ Clean and responsive UI
